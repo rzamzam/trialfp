@@ -5,6 +5,7 @@ import numpy as np
 
 from util import classify, set_background
 
+
 set_background('./BG/bg.jpg')
 
 # set title
@@ -18,9 +19,6 @@ file = st.file_uploader('', type=['jpeg', 'jpg', 'png'])
 
 # load classifier
 model = load_model('./model/PMAFP.h5')
-
-# Manually compile the model
-model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 
 # load class names
 with open('./model/labels.txt', 'r') as f:
