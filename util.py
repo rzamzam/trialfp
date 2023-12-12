@@ -1,6 +1,5 @@
 import base64
 
-
 import numpy as np
 from PIL import ImageOps, Image
 import base64
@@ -17,8 +16,8 @@ def classify(image, model, class_names):
     normalized_image_array = (image_array.astype(np.float32) / 127.5) - 1
 
     # Set model input
-    data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
-    data[0] = normalized_image_array
+    data = np.ndarray(shape=(1, 224, 224, 1), dtype=np.float32)
+    data[0, :, :, 0] = normalized_image_array  # Grayscale
 
     # Make prediction
     prediction = model.predict(data)
