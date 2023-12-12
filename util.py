@@ -17,6 +17,9 @@ def classify(image, model, class_names):
     # Convert image to grayscale
     gray_image_array = ImageOps.grayscale(image)
 
+    # Convert grayscale image to numpy array
+    gray_image_array = np.asarray(gray_image_array)
+
     # Normalize grayscale image
     normalized_gray_image_array = (gray_image_array / 127.5) - 1
 
