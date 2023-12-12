@@ -1,5 +1,6 @@
 import base64
 
+
 import numpy as np
 from PIL import ImageOps, Image
 import base64
@@ -11,9 +12,6 @@ def classify(image, model, class_names):
 
     # Convert image to numpy array
     image_array = np.asarray(image)
-
-    # Convert grayscale image to RGB by replicating the single channel to all three
-    image_array = np.stack((image_array,) * 3, axis=-1)
 
     # Normalize image
     normalized_image_array = (image_array.astype(np.float32) / 127.5) - 1
@@ -29,6 +27,7 @@ def classify(image, model, class_names):
     confidence_score = prediction[0][index]
 
     return class_name, confidence_score
+
     
 def set_background(image_file):
     """
