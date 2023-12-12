@@ -12,12 +12,15 @@ def classify(image, model, class_names):
     # Convert image to numpy array
     image_array = np.asarray(image)
 
-    # Normalize image
-    normalized_image_array = (image_array.astype(np.float32) / 127.5) - 1
+    # Convert image to grayscale
+    gray_image_array = ImageOps.grayscale(image)
+
+    # Normalize grayscale image
+    normalized_gray_image_array = (gray_image_array.astype(np.float32) / 127.5) - 1
 
     # Set model input
     data = np.ndarray(shape=(1, 224, 224, 1), dtype=np.float32)
-    data[0, :, :, 0] = normalized_image_array  # Grayscale
+    data[0, :, :, 0] = normalized_gray_image_array
 
     # Make prediction
     prediction = model.predict(data)
