@@ -1,5 +1,7 @@
 import base64
 
+# util.py
+
 import numpy as np
 from PIL import ImageOps, Image
 import base64
@@ -16,7 +18,7 @@ def classify(image, model, class_names):
     gray_image_array = ImageOps.grayscale(image)
 
     # Normalize grayscale image
-    normalized_gray_image_array = (gray_image_array.astype(np.float32) / 127.5) - 1
+    normalized_gray_image_array = (gray_image_array / 127.5) - 1
 
     # Set model input
     data = np.ndarray(shape=(1, 224, 224, 1), dtype=np.float32)
@@ -29,7 +31,6 @@ def classify(image, model, class_names):
     confidence_score = prediction[0][index]
 
     return class_name, confidence_score
-
     
 def set_background(image_file):
     """
