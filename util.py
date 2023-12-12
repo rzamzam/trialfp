@@ -1,15 +1,11 @@
 import base64
 
-import streamlit as st
-from PIL import ImageOps, Image
 import numpy as np
-
-from tensorflow.keras.preprocessing import image as keras_image
+from PIL import ImageOps, Image
+import base64
+import streamlit as st
 
 def classify(image, model, class_names):
-    # Convert image to grayscale (single-channel)
-    image = ImageOps.grayscale(image)
-
     # Resize image to (224, 224)
     image = ImageOps.fit(image, (224, 224), Image.Resampling.LANCZOS)
 
@@ -33,7 +29,7 @@ def classify(image, model, class_names):
     confidence_score = prediction[0][index]
 
     return class_name, confidence_score
-
+    
 def set_background(image_file):
     """
     This function sets the background of a Streamlit app to an image specified by the given image file.
